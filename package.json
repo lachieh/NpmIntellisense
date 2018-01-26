@@ -62,7 +62,8 @@
         },
         "npm-intellisense.importQuotes": {
           "type": "string",
-          "default": "'",
+          "enum": ["single", "double"],
+          "default": "single",
           "description":
             "For import command. The type of quotes to use in the snippet"
         },

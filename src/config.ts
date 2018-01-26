@@ -7,7 +7,7 @@ export interface Config {
     showBuildInLibs?: boolean,
     importES6?: boolean,
     ES6Destructuring?: boolean,
-    importQuotes?: string,
+    importQuotes?: "single" | "double",
     importLinebreak?: string,
     importDeclarationType?: string
 }

@@ -38,8 +38,9 @@ function moduleNameToQuickPickItem(moduleName: string) : QuickPickItem {
 }
 
 function addImportStatementToCurrentFile(item: QuickPickItem, config: Config) {
-    const statementES6 = config.ES6Destructuring ? `import {} from ${config.importQuotes}${item.label}${config.importQuotes}${config.importLinebreak}` : `import ${item.label.replace(/-/g, "")} from ${config.importQuotes}${item.label}${config.importQuotes}${config.importLinebreak}`;
-    const statementRequire = `${config.importDeclarationType} ${guessVariableName(item.label)} = require(${config.importQuotes}${item.label}${config.importQuotes})${config.importLinebreak}`;
+    const quotes = config.importQuotes === "single" ? "'" : "\"";
+    const statementES6 = config.ES6Destructuring ? `import {} from ${quotes}${item.label}${quotes}${config.importLinebreak}` : `import ${item.label.replace(/-/g, "")} from ${quotes}${item.label}${quotes}${config.importLinebreak}`;
+    const statementRequire = `${config.importDeclarationType} ${guessVariableName(item.label)} = require(${quotes}${item.label}${quotes})${config.importLinebreak}`;
     const statement = config.importES6 ? statementES6 : statementRequire;
     const insertLocation = window.activeTextEditor.selection.start;
     window.activeTextEditor.edit(edit => edit.insert(insertLocation, statement));
